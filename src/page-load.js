@@ -1,4 +1,8 @@
+import { createMenu } from "./menu-load";
+import { createContact } from "./contact-load";
+
 function createHomePage() {
+  clearPage();
   const content = document.getElementById("content");
   content.appendChild(createHeader());
   content.appendChild(createCenterPiece());
@@ -10,12 +14,15 @@ function createHeader() {
 
   const home = document.createElement("div");
   home.innerHTML = "Home";
+  home.addEventListener("click", createHomePage);
 
   const menu = document.createElement("div");
   menu.innerHTML = "Menu";
+  menu.addEventListener("click", createMenu);
 
   const contact = document.createElement("div");
   contact.innerHTML = "Contact";
+  contact.addEventListener("click", createContact);
 
   header.appendChild(home);
   header.appendChild(menu);
@@ -55,7 +62,7 @@ function sloganSelector() {
   const slogans = [
     "Our burgers are waiting for you",
     "Hasty and tasty!",
-    "The 3 P’s — pizza, pasta, and pastries!",
+    "The 3 P's — pizza, pasta, and pastries!",
     "You are in good tentacles",
     "Expensive but the best",
     "What can we get you?",
@@ -68,4 +75,9 @@ function sloganSelector() {
   return slogans[Math.floor(Math.random() * slogans.length)];
 }
 
-export { createHomePage };
+function clearPage() {
+  const content = document.querySelector("#content");
+  content.innerHTML = "";
+}
+
+export { createHomePage, createHeader, clearPage };
