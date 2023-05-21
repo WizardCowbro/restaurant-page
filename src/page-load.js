@@ -1,11 +1,16 @@
-import { createMenu } from "./menu-load";
+import { createMenuPage } from "./menu-load";
 import { createContact } from "./contact-load";
+import "./style.css";
+import luna from "./assets/cat-chef.png";
 
 function createHomePage() {
   clearPage();
   const content = document.getElementById("content");
+  content.className = "";
+  content.classList.toggle("content-home");
   content.appendChild(createHeader());
   content.appendChild(createCenterPiece());
+  content.appendChild(createFooter());
 }
 
 function createHeader() {
@@ -18,7 +23,7 @@ function createHeader() {
 
   const menu = document.createElement("div");
   menu.innerHTML = "Menu";
-  menu.addEventListener("click", createMenu);
+  menu.addEventListener("click", createMenuPage);
 
   const contact = document.createElement("div");
   contact.innerHTML = "Contact";
@@ -36,7 +41,7 @@ function createCenterPiece() {
   center.classList.toggle("center-piece");
 
   const image = document.createElement("img");
-  image.src = "./assets/cat-chef.png";
+  image.src = luna;
 
   const text = document.createElement("div");
   text.innerHTML = "Castle De La Cat";
@@ -69,6 +74,7 @@ function sloganSelector() {
     "A tasty burger is what you deserve",
     "Head for the border!",
     "The secret ingredient is always cheese",
+    "Delish and with relish",
     "Wake Up",
   ];
 
@@ -78,6 +84,18 @@ function sloganSelector() {
 function clearPage() {
   const content = document.querySelector("#content");
   content.innerHTML = "";
+}
+
+function createFooter() {
+  const footer = document.createElement("div");
+  footer.classList.toggle("footer");
+
+  const text = document.createElement("div");
+  text.innerHTML = "Website whipped up by Chris :)";
+
+  footer.appendChild(text);
+
+  return footer;
 }
 
 export { createHomePage, createHeader, clearPage };
